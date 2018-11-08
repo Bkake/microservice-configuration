@@ -13,7 +13,7 @@ eureka:
   numberRegistrySyncRetries: 1
   instance:
     preferIpAddress: true
-    hostname: discovery-service
+    hostname: discovery
   client:
     registryFetchIntervalSeconds: 5
     registerWithEureka: false
