@@ -1,0 +1,37 @@
+server:
+  port: ${PORT:9999}
+
+spring:
+  application:
+    name: security-service
+  logging:
+    level:
+      org.springframework.security: WARN
+
+keycloak:
+  auth-server-url: http://localhost:8080/auth
+  realm: ms-realm
+  resource: ms-api
+  credentials:
+    secret: 4f452a42-2afc-44a0-976d-aed5a57fbd2a
+  #we do not write a web-app - so no login page and redirects are necessary
+  bearer-only: true
+
+# authentification via accesstoken is fine
+security:
+  basic: 
+    enabled: false
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL}
+  instance:
+    instanceId: ${spring.application.name}:${random.value}
+    leaseRenewalIntervalInSeconds: 5
+    preferIpAddress: true
+
+ribbon:
+  eureka:
+    enabled: true
