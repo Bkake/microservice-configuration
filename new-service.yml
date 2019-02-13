@@ -38,14 +38,40 @@ eureka:
     leaseRenewalIntervalInSeconds: 5
     preferIpAddress: true
 
-ribbon:
-  eureka:
-    enabled: true
 
 management:
   security:
     enabled: false
 
+ribbon:
+  eureka:
+    enabled: false
+  
 feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 10000
+        loggerLevel: full
   hystrix:
     enabled: true
+
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 10
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+      circuitBreaker:
+        requestVolumeThreshold: 5
+        errorThresholdPercentage: 50
+        sleepWindowInMilliseconds: 10000
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 10000
