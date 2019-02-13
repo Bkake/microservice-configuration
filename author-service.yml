@@ -40,7 +40,7 @@ eureka:
 
 ribbon:
   eureka:
-    enabled: false
+    enabled: true
 
 
 management:
